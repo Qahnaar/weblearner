@@ -1,6 +1,7 @@
 package com.bestteam.controllers;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +13,20 @@ import com.bestteam.services.UserService;
 @Controller
 @RequestMapping("/user")
 public class LoginController {
+	
+	private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	private UserService userService;
 
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void login(@RequestParam("login") String login) throws Exception {
-		login = new ObjectMapper().readValue(login, String.class);
-		// String login = request.getParameter("login");
-		System.out.println(userService.getUser(login).getEmail());
+	public void loginPost(@RequestParam(value = "login") String login) {
+		LOG.info("POST with" + login);
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login1() {
-		System.out.println(userService.getUser("Qahnaar").getEmail());
-		return "index";
+	public void login() {
+
 	}
 }
