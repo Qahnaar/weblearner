@@ -7,6 +7,8 @@
 
 	<context:component-scan base-package="com.bestteam.controllers" />
 
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
 	<mvc:view-controller path="/" view-name="index" />
 
 	<bean
