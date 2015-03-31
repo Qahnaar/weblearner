@@ -1,14 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.bestteam</groupId>
-  <artifactId>weblearner</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>WebLeaner</name>
-  <description>Simple Internet Learning Eexperience</description>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.bestteam</groupId>
+	<artifactId>weblearner</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>WebLeaner</name>
+	<description>Simple Internet Learning Experience</description>
+
+	<properties>
 		<spring.version>4.1.4.RELEASE</spring.version>
+		<hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+		<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+		<hibernate.temp.use_jdbc_metadata_defaults>false</hibernate.temp.use_jdbc_metadata_defaults>
+		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+		<jdbc.url>jdbc:mysql://localhost:3306/weblearner</jdbc.url>
+		<jdbc.user>chatter</jdbc.user>
+		<jdbc.password>chatter</jdbc.password>
+		<tomcat.dbcp.initialSize>5</tomcat.dbcp.initialSize>
+		<tomcat.dbcp.maxActive>10</tomcat.dbcp.maxActive>
 	</properties>
 
 	<dependencies>
@@ -122,13 +132,13 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.6</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.6</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -139,6 +149,12 @@
 
 	<build>
 		<finalName>weblearner</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
