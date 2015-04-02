@@ -7,5 +7,5 @@ import com.bestteam.domain.Webinar;
 public interface WebinarService {
 	Webinar getWebinars(long id);
 
-	List<Webinar> getUsers();
+	List<Webinar> getWebinars();
 }

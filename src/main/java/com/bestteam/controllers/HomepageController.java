@@ -1,32 +1,32 @@
 package com.bestteam.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.bestteam.services.user.UserService;
+import com.bestteam.services.webinar.WebinarService;
 
 @Controller
 @RequestMapping("/")
 public class HomepageController {
-	
-	private final static Logger LOG = LoggerFactory.getLogger(HomepageController.class);
 
 	@Autowired
-	private UserService userService;
+	private WebinarService webinarService;
 
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView homepageRetrieval(HttpServletRequest request,
+			HttpServletResponse response) {
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void loginPost(@RequestParam(value = "login") String login) {
-		LOG.info("POST with" + login);
-	}
+		ModelAndView modelAndView = new ModelAndView("index");
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void login() {
+		modelAndView.addObject("pageTitle", "Homepage");
+		modelAndView.addObject("featureWebinars", webinarService.getWebinars());
 
+		return modelAndView;
 	}
 }

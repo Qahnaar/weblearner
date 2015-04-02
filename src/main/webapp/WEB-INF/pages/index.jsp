@@ -6,7 +6,7 @@
 <script src="<c:url value="/resources/js/lib/jquery-1.11.2.min.js" />"></script>
 <script src="<c:url value="/resources/js/main.js" />"></script>
 
-<title>Web Learner | {Page}</title>
+<title>Web Learner | ${pageTitle}</title>
 </head>
 <body>
 	<div class="header">
@@ -29,7 +29,11 @@
 	<div class="content">
 		<h2>WebLeaner</h2>
 		<h3>Find your study here</h3>
-		<div class="feature-container"></div>
+		<div class="feature-container">
+			<c:forEach items="${featuredWebinars}" var="webinar">
+				<div>${webinar.name} with lector $(webinar.lector.email)</div>
+			</c:forEach>
+		</div>
 	</div>
 </body>
 </html>

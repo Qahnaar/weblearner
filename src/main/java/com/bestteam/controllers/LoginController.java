@@ -27,6 +27,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void login() {
-
+		System.out.println("xD login post");
 	}
 }

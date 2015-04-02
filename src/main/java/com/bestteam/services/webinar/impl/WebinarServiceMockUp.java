@@ -86,7 +86,7 @@ public class WebinarServiceMockUp implements WebinarService {
 	}
 
 	@Override
-	public List<Webinar> getUsers() {
+	public List<Webinar> getWebinars() {
 		List<Webinar> webinars = new ArrayList<Webinar>();
 
 		for (Entry<Long, Webinar> webinar : webinarMap.entrySet()) {
