@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bestteam.services.user.UserService;
 
 @Controller
-@RequestMapping("/user")
-public class LoginController {
+@RequestMapping("/")
+public class HomepageController {
 	
-	private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
+	private final static Logger LOG = LoggerFactory.getLogger(HomepageController.class);
 
 	@Autowired
 	private UserService userService;

@@ -1,3 +1,56 @@
+/* Template page styles */
+.body {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
 .header {
 	border: 2px solid black;
+	height: 85px;
+}
+
+.header-content {
+	padding: 10px;
+}
+
+#logo {
+	height: 65px;
+}
+
+.logo-container {
+	float: left;
+}
+
+.header-links {
+	float: right;
+	height: 65px;
+	font-weight: 600;
+	font-size: 18px;
+	width: 340px;
+	margin-top: 10px;
+}
+
+#search-container {
+	float: left;
+	padding-top: 5px
+}
+
+#search {
+	border: 2px solid red;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#authentication-container {
+	float: right;
+	padding: 10px;
+}
+
+.content {
+	padding: 10px;
+	border: 2px solid green;
+}
+
+.feature-container {
+	border: 2px solid yellow;
 }

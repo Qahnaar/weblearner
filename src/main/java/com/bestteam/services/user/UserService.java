@@ -1,11 +1,11 @@
-package com.bestteam.services;
+package com.bestteam.services.user;
 
 import java.util.List;
 
 import com.bestteam.domain.User;
 
 public interface UserService {
-	User getUser(String login);
+	User getUser(long id);
 	
 	List<User> getUsers();
 }
