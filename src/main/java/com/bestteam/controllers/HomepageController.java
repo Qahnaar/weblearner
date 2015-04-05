@@ -1,31 +1,31 @@
 package com.bestteam.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bestteam.controllers.utils.ControllerConstants;
 import com.bestteam.services.webinar.WebinarService;
 
 @Controller
-@RequestMapping("/")
-public class HomepageController {
+@RequestMapping(ControllerConstants.Views.HOMEPAGE)
+public class HomepageController extends WebLearnerController {
 
 	@Autowired
 	private WebinarService webinarService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView homepageRetrieval(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView homepageRetrieval() {
 
-		ModelAndView modelAndView = new ModelAndView("index");
+		ModelAndView modelAndView = new ModelAndView(
+				ControllerConstants.Pages.HOMEPAGE);
 
-		modelAndView.addObject("pageTitle", "Homepage");
-		modelAndView.addObject("featureWebinars", webinarService.getWebinars());
+		setUpPage(modelAndView, ControllerConstants.Pages.Titles.HOMEPAGE);
+
+		modelAndView
+				.addObject("featuredWebinars", webinarService.getWebinars());
 
 		return modelAndView;
 	}

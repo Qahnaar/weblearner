@@ -40,7 +40,7 @@ public class Webinar {
 	@JoinColumn(name="webinar_id", referencedColumnName = "id")
 	private List<Attachment> attachments;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "lector_id")
 	private User lector;
 
