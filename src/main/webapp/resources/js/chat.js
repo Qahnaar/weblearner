@@ -6,8 +6,7 @@ var $chatWindow;
 var room = '';
 
 function onMessageReceived(evt) {
-	// var msg = eval('(' + evt.data + ')');
-	var msg = JSON.parse(evt.data); // native API
+	var msg = JSON.parse(evt.data);
 	var $messageLine = $('<tr><td class="received">' + msg.received
 			+ '</td><td class="user label label-info">' + msg.sender
 			+ '</td><td class="message badge">' + msg.message + '</td></tr>');
@@ -15,13 +14,12 @@ function onMessageReceived(evt) {
 }
 function sendMessage() {
 	var msg = '{"message":"' + $message.val() + '", "sender":"'
-			+ $nickName.val() + '", "received":""}';
+			+ $nickName.text() + '", "received":""}';
 	wsocket.send(msg);
 	$message.val('').focus();
 }
 
 function connectToChatserver() {
-	room = $('#chatroom option:selected').val();
 	wsocket = new WebSocket(serviceLocation + room);
 	wsocket.onmessage = onMessageReceived;
 }
@@ -38,8 +36,7 @@ $(document).ready(function() {
 	$nickName = $('#nickname');
 	$message = $('#message');
 	$chatWindow = $('#response');
-	$('.chat-wrapper').hide();
-	$nickName.focus();
+	room = $("#webinar_id").text();
 
 	$('#enterRoom').click(function(evt) {
 		evt.preventDefault();
@@ -57,4 +54,6 @@ $(document).ready(function() {
 	$('#leave-room').click(function() {
 		leaveRoom();
 	});
+
+	connectToChatserver();
 });
