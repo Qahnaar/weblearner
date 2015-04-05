@@ -1,11 +1,14 @@
 /* Template page styles */
-.body {
+body {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 	font-size: 14px;
+	color: aliceblue;
+	background-image: url("../img/bg-black.jpg");
 }
 
 .header {
-	border: 2px solid black;
+	background-color: rgba(109, 118, 36, 0.11);
+  	border: 2px solid rgba(0, 0, 0, 0.36);
 	height: 85px;
 }
 
@@ -24,24 +27,29 @@
 .header-links {
 	float: right;
 	height: 65px;
-	font-weight: 600;
 	font-size: 18px;
-	width: 400px;
+	width: 450px;
 	margin-top: 10px;
 }
 
 #search-container {
 	float: left;
-	padding-top: 5px
+	padding-top: 5px;
+	width: 250px;
 }
 
 #search {
 	padding: 5px;
+	width: inherit;
 }
 
 #authentication-container {
 	float: right;
-	padding: 9px 10px 10px 10px;
+	padding: 13px 10px 10px 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 200px;
 }
 
 .login {
@@ -50,11 +58,9 @@
 
 .content {
 	padding: 10px;
-	border: 2px solid green;
 }
 
 .featured-outer-container {
-	border: 1px solid rgb(8, 67, 255);
 	height: 125px;
 	margin: 25px 50px 25px 50px;
 	overflow: hidden;

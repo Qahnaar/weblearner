@@ -11,9 +11,10 @@ import com.bestteam.controllers.utils.ControllerConstants;
 import com.bestteam.services.webinar.WebinarService;
 
 @Controller
-@RequestMapping(ControllerConstants.Views.HOMEPAGE)
-public class HomepageController extends WebLearnerController {
+@RequestMapping(ControllerConstants.Views.DASHBOARD)
+public class DashboardController extends WebLearnerController {
 
+	private static final String FEATURED_WEBINARS = "featuredWebinars";
 	@Autowired
 	private WebinarService webinarService;
 
@@ -21,9 +22,11 @@ public class HomepageController extends WebLearnerController {
 	public ModelAndView homepageRetrieval() {
 
 		ModelAndView modelAndView = new ModelAndView(
-				ControllerConstants.Pages.HOMEPAGE);
+				ControllerConstants.Pages.DASHBOARD);
 
-		setUpPage(modelAndView, ControllerConstants.Pages.Titles.HOMEPAGE);
+		setUpPage(modelAndView, ControllerConstants.Pages.Titles.DASHBOARD);
+
+		modelAndView.addObject(FEATURED_WEBINARS, webinarService.getWebinars());
 
 		return modelAndView;
 	}
