@@ -2,13 +2,13 @@
 body {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	color: aliceblue;
+	color: black;
 	background-image: url("../img/bg-black.jpg");
 }
 
 .header {
 	background-color: rgba(109, 118, 36, 0.11);
-  	border: 2px solid rgba(0, 0, 0, 0.36);
+	border: 2px solid rgba(0, 0, 0, 0.36);
 	height: 85px;
 }
 
@@ -108,4 +108,54 @@ body {
 
 #next {
 	float: right;
+}
+
+.chat-container {
+	border: 1px solid red;
+	height: 250px;
+	width: 250px;
+	background-color: rgba(232, 232, 182, 0.68);
+	overflow-y: scroll;
+}
+
+.identifier {
+	font-weight: 600;
+}
+
+.chat_timestamp {
+	padding: 5px;
+	float: left;
+}
+
+.chat_sender {
+	padding: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.chat_message {
+	padding: 5px;
+	text-align: justify;
+	white-space: normal;
+}
+
+.chat_controll {
+	width: 250px;
+	height: 35px;
+}
+
+.inputted_message {
+	padding: 5px;
+	float: left;
+	margin: 5px 0px 0px 15px;
+}
+
+.chat_send {
+	background-image: url("../img/chat_send.svg") !important;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	float: right;
+	margin: 7px 15px 0px 0px;
 }

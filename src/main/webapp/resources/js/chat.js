@@ -7,11 +7,23 @@ var room = '';
 
 function onMessageReceived(evt) {
 	var msg = JSON.parse(evt.data);
-	var $messageLine = $('<tr><td class="received">' + msg.received
-			+ '</td><td class="user label label-info">' + msg.sender
-			+ '</td><td class="message badge">' + msg.message + '</td></tr>');
+
+	var message_core = '<div class="message"><div>';
+	if (msg.sender === $nickName.text()) {
+		message_core = '<div class="message"><div class="identifier">'
+	}
+	var message_received = '<div class="chat_timestamp">' + msg.received
+			+ '</div>';
+	var message_sender = '<div class="chat_sender">' + msg.sender + '</div>';
+	var message_text = '<div class="chat_message">' + msg.message + '</div>';
+
+	var $messageLine = $(message_core + message_received + message_sender
+			+ '</div>' + message_text + '</div>');
+
 	$chatWindow.append($messageLine);
+	$chatWindow.scrollTop($chatWindow[0].scrollHeight);
 }
+
 function sendMessage() {
 	var msg = '{"message":"' + $message.val() + '", "sender":"'
 			+ $nickName.text() + '", "received":""}';
@@ -19,33 +31,28 @@ function sendMessage() {
 	$message.val('').focus();
 }
 
+function sendEnterMessage() {
+	var msg = '{"message":"' + $nickName.text() + ' has logged in", "sender":"'
+			+ $nickName.text() + '", "received":""}';
+	wsocket.send(msg);
+}
+
 function connectToChatserver() {
 	wsocket = new WebSocket(serviceLocation + room);
 	wsocket.onmessage = onMessageReceived;
+	// sendEnterMessage();
 }
 
 function leaveRoom() {
 	wsocket.close();
-	$chatWindow.empty();
-	$('.chat-wrapper').hide();
-	$('.chat-signin').show();
-	$nickName.focus();
 }
 
 $(document).ready(function() {
 	$nickName = $('#nickname');
 	$message = $('#message');
-	$chatWindow = $('#response');
+	$chatWindow = $("#chat");
 	room = $("#webinar_id").text();
 
-	$('#enterRoom').click(function(evt) {
-		evt.preventDefault();
-		connectToChatserver();
-		$('.chat-wrapper h2').text('Chat # ' + $nickName.val() + "@" + room);
-		$('.chat-signin').hide();
-		$('.chat-wrapper').show();
-		$message.focus();
-	});
 	$('#do-chat').submit(function(evt) {
 		evt.preventDefault();
 		sendMessage()
