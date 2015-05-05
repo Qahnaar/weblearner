@@ -16,11 +16,14 @@
 
 	<mvc:annotation-driven />
 
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/"/>
-			<bean class="com.bestteam.interceptors.AuthenticationInterceptor"/>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/" />
+			<bean class="com.bestteam.interceptor.AuthenticationInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 

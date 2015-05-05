@@ -10,7 +10,8 @@
 
 	<properties>
 		<spring.version>4.1.6.RELEASE</spring.version>
-		<hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+		<jackson.version>1.9.10</jackson.version>
+		<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
 		<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
 		<hibernate.temp.use_jdbc_metadata_defaults>false</hibernate.temp.use_jdbc_metadata_defaults>
 		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
@@ -191,7 +192,17 @@
 			<version>1.0.4</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

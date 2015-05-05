@@ -1,11 +1,11 @@
-var wsocket;
-var serviceLocation = "ws://localhost:8080/weblearner/chat/";
+var chatWebSocket;
+var chatServiceLocation = "ws://localhost:8080/weblearner/chat/";
 var $nickName;
 var $message;
 var $chatWindow;
-var room = '';
+var chatRoom = '';
 
-function onMessageReceived(evt) {
+function onChatMessageReceived(evt) {
 	var msg = JSON.parse(evt.data);
 
 	var message_core = '<div class="message"><div>';
@@ -24,43 +24,45 @@ function onMessageReceived(evt) {
 	$chatWindow.scrollTop($chatWindow[0].scrollHeight);
 }
 
-function sendMessage() {
+function sendChatMessage() {
 	var msg = '{"message":"' + $message.val() + '", "sender":"'
 			+ $nickName.text() + '", "received":""}';
-	wsocket.send(msg);
+	chatWebSocket.send(msg);
 	$message.val('').focus();
 }
 
-function sendEnterMessage() {
+function sendChatEnterMessage() {
 	var msg = '{"message":"' + $nickName.text() + ' has logged in", "sender":"'
 			+ $nickName.text() + '", "received":""}';
-	wsocket.send(msg);
+	chatWebSocket.send(msg);
 }
 
-function connectToChatserver() {
-	wsocket = new WebSocket(serviceLocation + room);
-	wsocket.onmessage = onMessageReceived;
-	// sendEnterMessage();
+function connectToChatServer() {
+	chatWebSocket = new WebSocket(chatServiceLocation + chatRoom);
+	window.setTimeout(function() {
+		chatWebSocket.onmessage = onChatMessageReceived;
+		sendChatEnterMessage();
+	}, 1000);
 }
 
-function leaveRoom() {
-	wsocket.close();
+function leaveChatRoom() {
+	chatWebSocket.close();
 }
 
 $(document).ready(function() {
 	$nickName = $('#nickname');
 	$message = $('#message');
 	$chatWindow = $("#chat");
-	room = $("#webinar_id").text();
+	chatRoom = $("#webinar_id").text();
 
 	$('#do-chat').submit(function(evt) {
 		evt.preventDefault();
-		sendMessage()
+		sendChatMessage();
 	});
 
 	$('#leave-room').click(function() {
-		leaveRoom();
+		leaveChatRoom();
 	});
 
-	connectToChatserver();
+	connectToChatServer();
 });

@@ -3,6 +3,7 @@ package com.bestteam.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,20 +38,23 @@ public class Webinar {
 	private String agenda;
 
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="webinar_id", referencedColumnName = "id")
+	@JoinColumn(name = "webinar_id", referencedColumnName = "id")
 	private List<Attachment> attachments;
-	
+
+	@OneToMany(mappedBy="webinar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Presentation> presentations;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "lector_id")
 	private User lector;
 
 	@Column(name = "is_archived", nullable = false)
 	private boolean isArchived;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "start_date", nullable = false)
 	private Date startDate;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -113,5 +117,13 @@ public class Webinar {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public List<Presentation> getPresentations() {
+		return presentations;
+	}
+
+	public void setPresentations(List<Presentation> presentations) {
+		this.presentations = presentations;
 	}
 }

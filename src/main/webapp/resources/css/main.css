@@ -7,8 +7,8 @@ body {
 }
 
 .header {
-	background-color: rgba(109, 118, 36, 0.11);
-	border: 2px solid rgba(0, 0, 0, 0.36);
+	background-color: #B5B458;
+	border: 2px solid rgba(148, 138, 31, 0.73);
 	height: 85px;
 }
 
@@ -75,14 +75,14 @@ body {
 }
 
 .featured-element {
-	border: 1px solid purple;
+	border: 1px solid rgba(148, 138, 31, 0.73);
 	width: 200px;
 	height: 81px;
 	padding: 10px;
 	float: left;
 	margin: 20px 10px 20px 10px;
 	border-radius: 10px;
-	box-shadow: 2px 2px 19px -3px rgb(249, 0, 0);
+	box-shadow: 2px 2px 19px -3px rgba(1, 221, 239, 0.73);
 	background-color: #B5B458;
 }
 
@@ -110,8 +110,17 @@ body {
 	float: right;
 }
 
-.chat-container {
-	border: 1px solid red;
+.chat {
+	float: left;
+}
+
+.chat_header {
+	margin: 0 auto 10px auto;
+	width: 60px;
+}
+
+.chat_container {
+	border: 2px solid rgb(156, 148, 45);
 	height: 250px;
 	width: 250px;
 	background-color: rgba(232, 232, 182, 0.68);
@@ -158,4 +167,63 @@ body {
 	height: 30px;
 	float: right;
 	margin: 7px 15px 0px 0px;
+}
+
+.presentation {
+	float: left;
+	margin: 0px 0px 0px 20px;
+	width: 230px;
+}
+
+.presentation_options {
+	margin-left: 1px;
+}
+
+.presentation_options_header {
+	margin: 0 auto 10px auto;
+	width: 135px;
+}
+
+.presentation_available_header {
+	margin: 0 auto 10px auto;
+	width: 160px;
+}
+
+.presentation_entry {
+	height: 35px;
+}
+
+.presentation_name {
+	float: left;
+}
+
+.presentation_selector {
+	float: right;
+}
+
+.btn_active {
+	background-color: #B5B458;
+	border-color: rgba(148, 138, 31, 0.73);
+	color: black;
+}
+
+.images_container {
+	display: none;
+	width: inherit;
+	margin-top: 10px;
+}
+
+.googleDocs_container {
+	display: none;
+	width: inherit;
+	margin-top: 10px;
+}
+
+.stream {
+	float: left;
+	margin: 0px 0px 0px 20px;
+}
+
+.slides {
+	display: none;
 }
