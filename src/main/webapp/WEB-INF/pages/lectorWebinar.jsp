@@ -12,7 +12,8 @@
 <script src="<c:url value="/resources/js/lib/bootstrap.min.js" />"></script>
 <script src="<c:url value="/resources/js/webinar.js" />"></script>
 <script src="<c:url value="/resources/js/chat.js" />"></script>
-<script src="<c:url value="/resources/js/presentation/lectorPresentation.js" />"></script>
+<script
+	src="<c:url value="/resources/js/presentation/lectorPresentation.js" />"></script>
 
 <title>Web Learner | ${pageTitle}</title>
 </head>
@@ -21,19 +22,23 @@
 	<div class="content">
 		<h2>${webinar.name}</h2>
 		<h2>${webinar.lector.name}</h2>
-		<div class="chat">
-			<div class="chat_header">LiveChat</div>
-			<div id="chat" class="chat_container">
-				<span id="webinar_id" style="display: none">${webinar.webinarId}</span>
-				<span id="nickname" style="display: none">${LOGGEDIN_USER.email}</span>
+		<div class="left_container">
+			<div class="chat">
+				<div class="chat_header">LiveChat</div>
+				<div id="chat" class="chat_container">
+					<span id="webinar_id" style="display: none">${webinar.webinarId}</span>
+					<span id="nickname" style="display: none">${LOGGEDIN_USER.name}</span>
+				</div>
+				<div class="chat_controll">
+					<form id="do-chat">
+						<input type="text" id="message" class="inputted_message"
+							placeholder="Message..." /> <input type="submit"
+							class="btn btn-link active chat_send" value="" />
+					</form>
+				</div>
 			</div>
-			<div class="chat_controll">
-				<form id="do-chat">
-					<input type="text" id="message" class="inputted_message"
-						placeholder="Message..." /> <input type="submit"
-						class="btn btn-link active chat_send" value="" />
-				</form>
-			</div>
+			<br />
+			<div class="stream">VIDEO STREAMMMM AHAHA</div>
 		</div>
 		<div class="presentation">
 			<div id="presentationContent">
@@ -61,11 +66,11 @@
 				</div>
 			</div>
 			<div class="slides">
-				<div id="currentSlide">Slide1</div>
-				<a id="nextSlide" class="btn btn-sm active btn_active">Next</a> <a
-					id="prevSlide" class="btn btn-sm active btn_active">Previous</a>
+				<div style="display: none;" id="currentSlide">1</div>
+				<a id="nextSlide" class="btn btn-sm active btn_active next_slide_button">Next</a> <a
+					id="prevSlide" class="btn btn-sm active btn_active previous_slide_button">Previous</a>
+				<div id="slideContainer"></div>
 			</div>
 		</div>
-		<div class="stream">VIDEO STREAMMMM AHAHA</div>
 	</div>
 </body>

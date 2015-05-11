@@ -25,6 +25,7 @@ import com.bestteam.dto.PresentationDto;
 import com.bestteam.exception.SlideSaveException;
 import com.bestteam.facade.presentation.PresentationFacade;
 import com.bestteam.facade.util.FacadeConstants;
+import com.bestteam.facade.util.ImageEncoder;
 import com.bestteam.service.presentation.PresentationService;
 import com.bestteam.service.webinar.WebinarService;
 
@@ -158,5 +159,45 @@ public class DefaultPresentationFacade implements PresentationFacade {
 		}
 
 		return presentationDtos;
+	}
+
+	@Override
+	public File getSlide(String webinarId, String presentationName,
+			String currentSlide, String action) {
+
+		int currentSlideIndex = Integer.valueOf(currentSlide.substring(5));
+
+		if (action.equals("Next")) {
+			currentSlideIndex++;
+		} else {
+			currentSlideIndex--;
+		}
+
+		String newSlide = "Slide" + currentSlideIndex + ".JPG";
+
+		String filePath = MessageFormat
+				.format(FacadeConstants.PRESENTATION_SLIDE_FILE_PATH,
+						webinarId,
+						presentationName.substring(0,
+								presentationName.lastIndexOf('.')), newSlide);
+		return presentationService.getSlide(filePath);
+	}
+
+	@Override
+	public String getBase64Slide(String webinarId, String presentationName,
+			String slide) throws Exception {
+
+		String newSlide = "Slide" + slide + ".JPG";
+
+		String filePath = MessageFormat
+				.format(FacadeConstants.PRESENTATION_SLIDE_FILE_PATH,
+						webinarId,
+						presentationName.substring(0,
+								presentationName.lastIndexOf('.')), newSlide);
+
+		File imageFile = new File(filePath);
+		String img = ImageEncoder.imageToBase64String(imageFile);
+
+		return img;
 	}
 }

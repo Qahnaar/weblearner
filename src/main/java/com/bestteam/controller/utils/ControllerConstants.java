@@ -11,6 +11,7 @@ public class ControllerConstants {
 		public static final String ATTACHMENT = "/attachment";
 		public static final String UPLOAD_ATTACHMENT = "/attachment/upload";
 		public static final String PRESENTATION = "/presentation";
+		public static final String PRESENTATION_SLIDE = "/{webinarId}/{presentationName}/{slide}";
 		public static final String UPLOAD_PRESENTATION = "/upload/{webinarId}";
 		public static final String PRESENTATIONS_WEBINAR = "/webinar/{webinarId}";
 	}

@@ -5,15 +5,11 @@ var presentationRoom = '';
 function onPresentationMessageReceived(evt) {
 	var msg = JSON.parse(evt.data);
 
-	// here get binary slide file and display it
-	
-	console.log(msg.currentName);
+	loadAndDisplaySlide(msg.webinarId, msg.presentationName, msg.slide);
 }
 
-function sendPresentationMessage(presentationName, currentSlide, slideAction,
-		webinarId) {
-	var msg = '{"currentSlide":"' + currentSlide + '","slideAction":"'
-			+ slideAction + '", "webinarId":"' + webinarId
+function sendPresentationMessage(presentationName, slide, webinarId) {
+	var msg = '{"slide":"' + slide + '", "webinarId":"' + webinarId
 			+ '", "presentationName": "' + presentationName + '"}';
 
 	presentationWebSocket.send(msg);

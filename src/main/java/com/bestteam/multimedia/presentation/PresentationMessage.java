@@ -1,9 +1,11 @@
 package com.bestteam.multimedia.presentation;
 
 public class PresentationMessage {
-	private String currentSlide;
-	private String slideAction;
+
+	private String slide;
+
 	private String presentationName;
+
 	private String webinarId;
 
 	public String getPresentationName() {
@@ -22,19 +24,11 @@ public class PresentationMessage {
 		this.webinarId = webinarId;
 	}
 
-	public String getCurrentSlide() {
-		return currentSlide;
+	public String getSlide() {
+		return slide;
 	}
 
-	public void setCurrentSlide(String currentSlide) {
-		this.currentSlide = currentSlide;
-	}
-
-	public String getSlideAction() {
-		return slideAction;
-	}
-
-	public void setSlideAction(String slideAction) {
-		this.slideAction = slideAction;
+	public void setSlide(String slide) {
+		this.slide = slide;
 	}
 }

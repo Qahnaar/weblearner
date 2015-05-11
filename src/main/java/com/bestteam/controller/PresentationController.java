@@ -33,8 +33,8 @@ public class PresentationController {
 	private WebinarConverter webinarConverter;
 
 	@RequestMapping(value = ControllerConstants.Mappings.UPLOAD_PRESENTATION, method = RequestMethod.POST)
-	protected @ResponseBody PresentationDto onSubmit(
-			@PathVariable long webinarId, MultipartFile file) throws Exception {
+	public @ResponseBody PresentationDto onSubmit(@PathVariable long webinarId,
+			MultipartFile file) throws Exception {
 		PresentationDto presentation = presentationFacade.saveSlides(webinarId,
 				file);
 
@@ -42,11 +42,23 @@ public class PresentationController {
 	}
 
 	@RequestMapping(value = ControllerConstants.Mappings.PRESENTATIONS_WEBINAR, method = RequestMethod.GET)
-	protected @ResponseBody WebinarDto getPresentationsForWebinar(
+	public @ResponseBody WebinarDto getPresentationsForWebinar(
 			@PathVariable long webinarId) throws Exception {
 		WebinarDto webinar = webinarFacade.get(webinarId);
 		webinar.setLector(userFacade.getLectorForWebinar(webinarId));
 
 		return webinar;
+	}
+
+	@RequestMapping(value = ControllerConstants.Mappings.PRESENTATION_SLIDE, method = RequestMethod.GET)
+	@ResponseBody
+	public String getSlideForPresentation(@PathVariable String webinarId,
+			@PathVariable String presentationName, @PathVariable String slide)
+			throws Exception {
+
+		String encodedImage = presentationFacade.getBase64Slide(webinarId,
+				presentationName, slide);
+
+		return encodedImage;
 	}
 }

@@ -5,7 +5,7 @@ var presentationRoom = '';
 function onPresentationMessageReceived(evt) {
 	var msg = JSON.parse(evt.data);
 
-	console.log(msg.slideName);
+	loadAndDisplaySlide(msg.webinarId, msg.presentationName, msg.slide);
 }
 
 function connectToPresentationServer() {

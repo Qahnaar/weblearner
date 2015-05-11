@@ -21,8 +21,7 @@ public class PresentationMessageEncoder implements
 			throws EncodeException {
 		return Json
 				.createObjectBuilder()
-				.add("currentName", presentationMessage.getCurrentSlide())
-				.add("slideAction", presentationMessage.getSlideAction())
+				.add("slide", presentationMessage.getSlide())
 				.add("webinarId", presentationMessage.getWebinarId())
 				.add("presentationName",
 						presentationMessage.getPresentationName()).build()

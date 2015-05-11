@@ -1,5 +1,7 @@
 package com.bestteam.facade.presentation;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -18,4 +20,10 @@ public interface PresentationFacade extends
 			throws SlideSaveException;
 
 	void loadSlides(Presentation presentation);
+
+	File getSlide(String webinarId, String presentationName,
+			String currentSlide, String action) throws IOException;
+
+	String getBase64Slide(String webinarId, String presentationName,
+			String slide) throws Exception;
 }

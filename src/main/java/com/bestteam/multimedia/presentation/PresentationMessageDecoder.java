@@ -10,6 +10,7 @@ import javax.websocket.EndpointConfig;
 
 public class PresentationMessageDecoder implements
 		Decoder.Text<PresentationMessage> {
+	
 	@Override
 	public void init(final EndpointConfig config) {
 	}
@@ -24,8 +25,7 @@ public class PresentationMessageDecoder implements
 		PresentationMessage presentationMessage = new PresentationMessage();
 		JsonObject obj = Json.createReader(new StringReader(slideName))
 				.readObject();
-		presentationMessage.setCurrentSlide(obj.getString("currentSlide"));
-		presentationMessage.setSlideAction(obj.getString("slideAction"));
+		presentationMessage.setSlide(obj.getString("slide"));
 		presentationMessage.setPresentationName(obj
 				.getString("presentationName"));
 		presentationMessage.setWebinarId(obj.getString("webinarId"));

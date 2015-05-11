@@ -1,3 +1,6 @@
+var presentationName = '';
+var webinarId = '';
+
 bindAll = function() {
 	$(".presentation").on("click", "a", function(event) {
 		event.preventDefault;
@@ -5,9 +8,12 @@ bindAll = function() {
 		bindPresentationSwapTrigger(target);
 	})
 
+	webinarId = $("#webinar_id").text();
+	
 	bindPresentationUpload();
 	bindPresentationSelect();
 	getPresentations();
+	bindPresentationButtons();
 };
 
 bindPresentationSwapTrigger = function(target) {
@@ -64,10 +70,50 @@ bindPresentationSelect = function() {
 					'display' : 'block'
 				});
 
-				sendPresentationMessage($(e.currentTarget).parent().prev()
-						.text(), $("#currentSlide").text(), $("#nextSlide").text(), $(
-						"#webinar_id").text());
+				presentationName = $(e.currentTarget).parent().prev().text();
 
+				sendPresentationMessage(presentationName, $("#currentSlide")
+						.text(), webinarId);
+
+			});
+};
+
+loadAndDisplaySlide = function(webinarId, presentationName, slide) {
+	$.ajax({
+		url : "/weblearner/presentation/" + webinarId + "/" + presentationName
+				+ "/" + slide,
+		type : "GET",
+
+		success : function(result) {
+			var img = "<img src='data:image/jpg;base64," + result + "'/>";
+			$("#slideContainer").html(img);
+		},
+
+		error : function() {
+			alert("Damn an error while loading slide.");
+		}
+	});
+};
+
+bindPresentationButtons = function() {
+	$(".slides").on(
+			"click",
+			"#nextSlide",
+			function(e) {
+				var curSlide = $("#currentSlide"),
+					curSlideText = curSlide.text();
+				curSlide.text(parseInt(curSlideText) + 1);
+				sendPresentationMessage(presentationName, curSlide.text(), webinarId);
+			});
+
+	$(".slides").on(
+			"click",
+			"#prevSlide",
+			function(e) {
+				var curSlide = $("#currentSlide"),
+					curSlideText = curSlide.text();
+				curSlide.text(parseInt(curSlideText) - 1);
+				sendPresentationMessage(presentationName, curSlide.text(), webinarId);
 			});
 };
 
@@ -81,7 +127,7 @@ createPresentationEntry = function(presentation) {
 
 getPresentations = function() {
 	$.ajax({
-		url : '/weblearner/presentation/webinar/' + $("#webinar_id").text(),
+		url : '/weblearner/presentation/webinar/' + webinarId,
 		processData : false,
 		type : "GET",
 		contentType : false,
